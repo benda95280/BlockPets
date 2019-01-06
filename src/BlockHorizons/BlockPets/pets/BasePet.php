@@ -325,6 +325,7 @@ abstract class BasePet extends Creature implements Rideable {
 			}
 		}
 		$this->calculator->updateNameTag();
+		var_dump($source);
 		parent::attack($source);
 	}
 
