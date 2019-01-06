@@ -58,12 +58,12 @@ Give-Experience-For-Feeding: true
 # Options:
 # - MySQL
 # - SQLite
-Database: MySQL
+Database: SQLite
 
 # MySQL information. This is only relevant if database above is set to MySQL.
 MySQL-Info:
   Host: 127.0.0.1
-  User: BlockPets
+  User: Admin
   Password: password
   Database: BlockPets
   Port: 3306
