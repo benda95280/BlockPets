@@ -441,7 +441,6 @@ class Loader extends PluginBase {
 			if(!$isVisible) {
 				$entity->updateVisibility(false);
 			}
-			$this->playerPets[$player->getLowerCaseName()][strtolower($entity->getPetName())] = $entity;
 			return $entity;
 		}
 		return null;
