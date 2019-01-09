@@ -441,6 +441,8 @@ class Loader extends PluginBase {
 			if(!$isVisible) {
 				$entity->updateVisibility(false);
 			}
+      
+      $this->playerPets[$player->getName()][strtolower($entity->getPetName())] = $entity;
 			return $entity;
 		}
 		return null;
@@ -479,12 +481,33 @@ class Loader extends PluginBase {
 	 * @return BasePet|null
 	 */
 	public function getPetByName(string $name, ?string $player = null): ?BasePet {
-		$name = strtolower($name);
+    $name = strtolower($name);
 		if($player !== null) {
 			return $this->playerPets[strtolower($player)][$name] ?? null;
 		}
 		foreach($this->getServer()->getOnlinePlayers() as $player) {
 			if(isset($this->playerPets[$k = $player->getLowerCaseName()][$name])) {
+				return $this->playerPets[$k][$name];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the first pet found with the given name.
+	 *
+	 * @param string $name
+	 * @param string|null $player
+	 *
+	 * @return BasePet|null
+	 */
+	public function getPetByNameForToggle(string $name, ?string $player = null): ?BasePet {
+    //    $name = strtolower($name);
+		if($player !== null) {
+			return $this->playerPets[$player][$name] ?? null;
+		}
+		foreach($this->getServer()->getOnlinePlayers() as $player) {
+			if(isset($this->playerPets[$k = $player->getName()][$name])) {
 				return $this->playerPets[$k][$name];
 			}
 		}
